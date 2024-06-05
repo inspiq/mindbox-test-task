@@ -14,13 +14,12 @@ const createTodo = () => {
   };
 };
 
-const mockFn = vi.fn();
+const onToggleCompleteTodo = vi.fn();
 const wrapper = render(
   <ThemeProvider theme={theme}>
     <TodoCard
-      key="testKey"
       todo={createTodo()}
-      onToggleCompleteTodo={mockFn}
+      onToggleCompleteTodo={onToggleCompleteTodo}
       isLastElement={false}
       index={0}
     />
@@ -34,5 +33,5 @@ it('Test render todos panel', () => {
 it('Test click button toggle complete todo', () => {
   const checkbox = wrapper.getByTestId('checkbox');
   fireEvent.click(checkbox);
-  expect(mockFn).toHaveBeenCalledTimes(1);
+  expect(onToggleCompleteTodo).toHaveBeenCalledTimes(1);
 });

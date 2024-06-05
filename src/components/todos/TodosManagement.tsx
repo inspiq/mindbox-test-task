@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { TodosFiltersPanel } from 'src/components/todos/todos_filters_panel/TodosFiltersPanel';
 import { useTodosContext } from 'src/context';
+import { filters } from 'src/mocks';
 
 const MainLayout = styled.div`
   display: flex;
@@ -40,7 +41,7 @@ const TodosManagementElement = (): ReactElement => {
       <ActiveTodoCount>
         {pluralize('item', incompleteTodosCount, true)} left
       </ActiveTodoCount>
-      <TodosFiltersPanel />
+      <TodosFiltersPanel filters={filters} />
       <Action onClick={onClearCompletedTodos}>Clear completed</Action>
     </MainLayout>
   );

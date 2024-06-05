@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { TodosFilterCard } from 'src/components/todos/todos_filters_panel/TodosFilterCard';
 import { useFilterContext } from 'src/context';
-import { filters } from 'src/mocks';
+import type { Filter } from 'src/types';
 
 const MainLayout = styled.div`
   display: flex;
@@ -11,7 +11,11 @@ const MainLayout = styled.div`
   gap: 10px;
 `;
 
-const TodosFiltersPanelElement = (): ReactElement => {
+const TodosFiltersPanelElement = ({
+  filters,
+}: {
+  filters: Filter[];
+}): ReactElement => {
   const { setFilter, filter } = useFilterContext();
 
   return (
