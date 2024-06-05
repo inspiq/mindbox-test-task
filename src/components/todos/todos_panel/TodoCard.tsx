@@ -54,6 +54,7 @@ const TodoCardElement = ({
         checked={isCompleted}
         id={id}
         Icon={<CheckMarkIcon color={grey} width={12} height={12} />}
+        data-testid="checkbox"
       />
       <Title htmlFor={id} $isCompleted={todo.isCompleted}>
         {title}
