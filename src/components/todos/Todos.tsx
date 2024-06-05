@@ -16,7 +16,7 @@ const MainLayout = styled.div`
 
 const TodosElement = (): ReactElement => {
   const [todoValue, setTodoValue] = useState('');
-  const { setTodos } = useTodosContext();
+  const { setTodos, todos } = useTodosContext();
 
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (!todoValue.trim()) return;
@@ -41,7 +41,7 @@ const TodosElement = (): ReactElement => {
         placeholder="What needs to be done?"
         type="text"
       />
-      <TodosPanel />
+      <TodosPanel todos={todos} setTodos={setTodos} />
       <TodosManagement />
     </MainLayout>
   );

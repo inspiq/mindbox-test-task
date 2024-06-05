@@ -1,8 +1,14 @@
-import { type ReactElement, useCallback, useMemo } from 'react';
+import {
+  type Dispatch,
+  type ReactElement,
+  type SetStateAction,
+  useCallback,
+  useMemo,
+} from 'react';
 import styled from 'styled-components';
 
 import { TodoCard } from 'src/components/todos/todos_panel/TodoCard';
-import { useFilterContext, useTodosContext } from 'src/context';
+import { useFilterContext } from 'src/context';
 import { FilterValues } from 'src/enums';
 import type { Todo } from 'src/types';
 
@@ -18,14 +24,18 @@ const NotFound = styled.div`
   padding: 15px 10px;
 `;
 
+interface Props {
+  todos: Todo[];
+  setTodos: Dispatch<SetStateAction<Todo[]>>;
+}
+
 const filterFunctions = {
   [FilterValues.All]: () => true,
   [FilterValues.Active]: (todo: Todo) => !todo.isCompleted,
   [FilterValues.Completed]: (todo: Todo) => todo.isCompleted,
 };
 
-const TodosPanelElement = (): ReactElement => {
-  const { todos, setTodos } = useTodosContext();
+const TodosPanelElement = ({ todos, setTodos }: Props): ReactElement => {
   const { filter } = useFilterContext();
 
   const onToggleCompleteTodo = useCallback(
