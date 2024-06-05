@@ -4,4 +4,5 @@ import { Fonts } from 'src/theme/fonts';
 export const theme = {
   ...Fonts,
   ...colors,
+  text: colors.black,
 };
