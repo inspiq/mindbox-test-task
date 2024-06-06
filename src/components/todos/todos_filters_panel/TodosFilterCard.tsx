@@ -1,7 +1,7 @@
 import { memo, type ReactElement } from 'react';
 import styled, { css } from 'styled-components';
 
-const MainLayout = styled.div<{ $isActive: boolean }>`
+const MainLayout = styled.li<{ $isActive: boolean }>`
   font-size: 12px;
   font-weight: ${({ theme }) => theme.w400};
   color: ${({ theme }) => theme.grey};

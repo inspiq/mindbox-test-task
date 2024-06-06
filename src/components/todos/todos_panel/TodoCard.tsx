@@ -5,7 +5,7 @@ import { UiInput } from 'src/components';
 import { CheckMarkIcon } from 'src/icons';
 import type { Todo } from 'src/types';
 
-const MainLayout = styled.div<{ $isLastElement: boolean }>`
+const MainLayout = styled.li<{ $isLastElement: boolean }>`
   padding: 15px 10px;
   ${({ $isLastElement, theme }) =>
     !$isLastElement &&

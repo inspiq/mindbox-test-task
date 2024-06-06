@@ -5,7 +5,7 @@ import { TodosFilterCard } from 'src/components/todos/todos_filters_panel/TodosF
 import { useFilterContext } from 'src/context';
 import type { Filter } from 'src/types';
 
-const MainLayout = styled.div`
+const MainLayout = styled.ul`
   display: flex;
   align-items: center;
   gap: 10px;
@@ -24,8 +24,8 @@ const TodosFiltersPanelElement = ({
         <TodosFilterCard
           key={item.value}
           title={item.title}
-          onChangeFilter={() => setFilter(item)}
-          isActive={item.value === filter.value}
+          onChangeFilter={() => setFilter(item.value)}
+          isActive={item.value === filter}
         />
       ))}
     </MainLayout>

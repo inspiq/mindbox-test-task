@@ -9,19 +9,15 @@ import {
 } from 'react';
 
 import { FilterValues, LocalStorageKeys } from 'src/enums';
-import type { Filter } from 'src/types';
 import { getInitialState } from 'src/utils';
 
 interface Values {
-  filter: Filter;
-  setFilter: Dispatch<SetStateAction<Filter>>;
+  filter: FilterValues;
+  setFilter: Dispatch<SetStateAction<FilterValues>>;
 }
 
 const initialValues: Values = {
-  filter: {
-    value: FilterValues.All,
-    title: 'Все',
-  },
+  filter: FilterValues.All,
   setFilter: () => undefined,
 };
 
@@ -29,10 +25,7 @@ export const FilterContext = createContext<Values>(initialValues);
 
 export const FilterProvider = ({ children }: PropsWithChildren) => {
   const [filter, setFilter] = useState(() =>
-    getInitialState<Filter>(LocalStorageKeys.Filter, {
-      value: FilterValues.All,
-      title: 'Все',
-    }),
+    getInitialState<FilterValues>(LocalStorageKeys.Filter, FilterValues.All),
   );
 
   useEffect(() => {

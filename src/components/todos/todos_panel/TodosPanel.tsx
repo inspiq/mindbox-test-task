@@ -52,8 +52,8 @@ const TodosPanelElement = ({ todos, setTodos }: Props): ReactElement => {
   );
 
   const filteredTodos = useMemo(
-    () => todos.filter(filterFunctions[filter.value]),
-    [filter.value, todos],
+    () => todos.filter(filterFunctions[filter]),
+    [filter, todos],
   );
 
   if (!filteredTodos.length) {
