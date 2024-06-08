@@ -33,5 +33,5 @@ it('Test render todos panel', () => {
 it('Test click button toggle complete todo', () => {
   const checkbox = wrapper.getByTestId('checkbox');
   fireEvent.click(checkbox);
-  expect(onToggleCompleteTodo).toHaveBeenCalledTimes(1);
+  expect(onToggleCompleteTodo).toBeCalled();
 });

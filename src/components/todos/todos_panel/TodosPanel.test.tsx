@@ -25,6 +25,10 @@ it('Test render todos panel', () => {
 });
 
 it('Test render no todos found message', () => {
-  const wrapper = render(<TodosPanel todos={[]} setTodos={vi.fn()} />);
+  const wrapper = render(
+    <ThemeProvider theme={theme}>
+      <TodosPanel todos={[]} setTodos={vi.fn()} />
+    </ThemeProvider>,
+  );
   expect(wrapper.getByText('No todos found..')).toBeTruthy();
 });

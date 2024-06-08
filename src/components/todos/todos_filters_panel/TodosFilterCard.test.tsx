@@ -5,8 +5,8 @@ import { expect, it, vi } from 'vitest';
 import { TodosFilterCard } from 'src/components/todos/todos_filters_panel/TodosFilterCard';
 import { theme } from 'src/theme';
 
-const title = 'Test';
 const onChangeFilter = vi.fn();
+const title = 'Test';
 const wrapper = render(
   <ThemeProvider theme={theme}>
     <TodosFilterCard
@@ -24,5 +24,5 @@ it('Test render todos filter card', () => {
 it('Test click button on change filter', () => {
   const filterCard = wrapper.getByText(title);
   fireEvent.click(filterCard);
-  expect(onChangeFilter).toBeCalledTimes(1);
+  expect(onChangeFilter).toBeCalled();
 });

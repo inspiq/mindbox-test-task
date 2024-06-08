@@ -1,4 +1,9 @@
-import { type KeyboardEvent, type ReactElement, useState } from 'react';
+import {
+  type KeyboardEvent,
+  type ReactElement,
+  useMemo,
+  useState,
+} from 'react';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -18,6 +23,11 @@ const TodosElement = (): ReactElement => {
   const [todoValue, setTodoValue] = useState('');
   const { setTodos, todos } = useTodosContext();
 
+  const incompleteTodosCount = useMemo(
+    () => todos.filter((todo) => !todo.isCompleted).length,
+    [todos],
+  );
+
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (!todoValue.trim()) return;
 
@@ -32,6 +42,10 @@ const TodosElement = (): ReactElement => {
     }
   };
 
+  const onClearCompletedTodos = () => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => !todo.isCompleted));
+  };
+
   return (
     <MainLayout>
       <UiInput
@@ -42,7 +56,10 @@ const TodosElement = (): ReactElement => {
         type="text"
       />
       <TodosPanel todos={todos} setTodos={setTodos} />
-      <TodosManagement />
+      <TodosManagement
+        onClearCompletedTodos={onClearCompletedTodos}
+        incompleteTodosCount={incompleteTodosCount}
+      />
     </MainLayout>
   );
 };

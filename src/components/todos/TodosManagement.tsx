@@ -1,9 +1,8 @@
-import { type ReactElement, useMemo } from 'react';
+import { type ReactElement } from 'react';
 import pluralize from 'pluralize';
 import styled from 'styled-components';
 
 import { TodosFiltersPanel } from 'src/components/todos/todos_filters_panel/TodosFiltersPanel';
-import { useTodosContext } from 'src/context';
 import { filters } from 'src/mocks';
 
 const MainLayout = styled.div`
@@ -25,26 +24,22 @@ const ActiveTodoCount = styled(Action)`
   cursor: default;
 `;
 
-const TodosManagementElement = (): ReactElement => {
-  const { setTodos, todos } = useTodosContext();
+interface Props {
+  incompleteTodosCount: number;
+  onClearCompletedTodos: () => void;
+}
 
-  const onClearCompletedTodos = () => {
-    setTodos((prevTodos) => prevTodos.filter((todo) => !todo.isCompleted));
-  };
-  const incompleteTodosCount = useMemo(
-    () => todos.filter((todo) => !todo.isCompleted).length,
-    [todos],
-  );
-
-  return (
-    <MainLayout>
-      <ActiveTodoCount>
-        {pluralize('item', incompleteTodosCount, true)} left
-      </ActiveTodoCount>
-      <TodosFiltersPanel filters={filters} />
-      <Action onClick={onClearCompletedTodos}>Clear completed</Action>
-    </MainLayout>
-  );
-};
+const TodosManagementElement = ({
+  incompleteTodosCount,
+  onClearCompletedTodos,
+}: Props): ReactElement => (
+  <MainLayout>
+    <ActiveTodoCount>
+      {pluralize('item', incompleteTodosCount, true)} left
+    </ActiveTodoCount>
+    <TodosFiltersPanel filters={filters} />
+    <Action onClick={onClearCompletedTodos}>Clear completed</Action>
+  </MainLayout>
+);
 
 export const TodosManagement = TodosManagementElement;
