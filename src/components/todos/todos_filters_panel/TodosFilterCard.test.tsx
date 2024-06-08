@@ -1,20 +1,17 @@
-import { fireEvent, render } from '@testing-library/react';
-import { ThemeProvider } from 'styled-components';
+import { fireEvent } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
 
 import { TodosFilterCard } from 'src/components/todos/todos_filters_panel/TodosFilterCard';
-import { theme } from 'src/theme';
+import { render } from 'src/utils';
 
 const onChangeFilter = vi.fn();
 const title = 'Test';
 const wrapper = render(
-  <ThemeProvider theme={theme}>
-    <TodosFilterCard
-      title={title}
-      isActive={false}
-      onChangeFilter={onChangeFilter}
-    />
-  </ThemeProvider>,
+  <TodosFilterCard
+    title={title}
+    isActive={false}
+    onChangeFilter={onChangeFilter}
+  />,
 );
 
 it('Test render todos filter card', () => {

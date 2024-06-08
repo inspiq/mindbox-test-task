@@ -1,10 +1,8 @@
-import { render } from '@testing-library/react';
-import { ThemeProvider } from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import { expect, it, vi } from 'vitest';
 
 import { TodosPanel } from 'src/components/todos/todos_panel/TodosPanel';
-import { theme } from 'src/theme';
+import { render } from 'src/utils';
 
 const createTodo = () => {
   return {
@@ -17,18 +15,12 @@ const createTodo = () => {
 it('Test render todos panel', () => {
   const todosResponse = [createTodo(), createTodo()];
   const wrapper = render(
-    <ThemeProvider theme={theme}>
-      <TodosPanel todos={todosResponse} setTodos={vi.fn()} />
-    </ThemeProvider>,
+    <TodosPanel todos={todosResponse} setTodos={vi.fn()} />,
   );
   expect(wrapper.getAllByText('Test').length).toBe(todosResponse.length);
 });
 
 it('Test render no todos found message', () => {
-  const wrapper = render(
-    <ThemeProvider theme={theme}>
-      <TodosPanel todos={[]} setTodos={vi.fn()} />
-    </ThemeProvider>,
-  );
+  const wrapper = render(<TodosPanel todos={[]} setTodos={vi.fn()} />);
   expect(wrapper.getByText('No todos found..')).toBeTruthy();
 });

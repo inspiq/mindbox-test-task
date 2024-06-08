@@ -1,10 +1,9 @@
-import { fireEvent, render } from '@testing-library/react';
-import { ThemeProvider } from 'styled-components';
+import { fireEvent } from '@testing-library/react';
 import { v4 as uuidv4 } from 'uuid';
 import { expect, it, vi } from 'vitest';
 
 import { TodoCard } from 'src/components/todos/todos_panel/TodoCard';
-import { theme } from 'src/theme';
+import { render } from 'src/utils';
 
 const createTodo = () => {
   return {
@@ -16,14 +15,12 @@ const createTodo = () => {
 
 const onToggleCompleteTodo = vi.fn();
 const wrapper = render(
-  <ThemeProvider theme={theme}>
-    <TodoCard
-      todo={createTodo()}
-      onToggleCompleteTodo={onToggleCompleteTodo}
-      isLastElement={false}
-      index={0}
-    />
-  </ThemeProvider>,
+  <TodoCard
+    todo={createTodo()}
+    onToggleCompleteTodo={onToggleCompleteTodo}
+    isLastElement={false}
+    index={0}
+  />,
 );
 
 it('Test render todos panel', () => {
